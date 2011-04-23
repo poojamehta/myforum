@@ -1,0 +1,17 @@
+<p>
+  <b>Forum:</b>
+  <%=h @forum.name %> - <%=h @forum.description %>
+</p>
+
+<% unless @forum.topics.empty? %>
+  <h2>Topics</h2>
+  <% @forum.topics.each do |topic| %>
+    <b><%= link_to topic.subject, [@forum, topic] %></b><br />    
+  <% end %>
+<% end %>
+
+<h2>New Post</h2>
+<%= render :partial => @topic = Topic.new, :locals => { :button_name => 'Create' } %>
+
+<%= link_to 'Edit', edit_forum_path(@forum) %> |
+<%= link_to 'Back', forums_path %>
